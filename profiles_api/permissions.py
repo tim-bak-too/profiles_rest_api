@@ -9,4 +9,4 @@ class UpdateOwnProfile(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         else:
-            return obj.id == request.user_id
+            return obj.id == request.user.id
