@@ -7,7 +7,6 @@ class UserProfileManager(BaseUserManager):
     """
     Required by Django for managing our users from the management command.
     """
-
     def create_user(self, email, name, password=None):
         if not email:
             raise ValueError('Users must have an email address.')
@@ -36,7 +35,6 @@ class UserProfileManager(BaseUserManager):
         return user
 
 
-
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Model for user profile"""
     email = models.EmailField(max_length=255, unique=True)
@@ -44,6 +42,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    # ToDo: Use a more meaningful name instead of `objects` for instance of `UserProfileManager`
     objects = UserProfileManager()
 
     USERNAME_FIELD = 'email'
